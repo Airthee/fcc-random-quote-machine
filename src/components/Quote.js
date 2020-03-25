@@ -14,13 +14,17 @@ class Quote extends React.Component {
     return (
       <Card>
         <Card.Body>
-          <div id="text">
-            <FontAwesomeIcon icon={faQuoteLeft} />
-            { this.props.content }
-            <FontAwesomeIcon icon={faQuoteRight} />
-          </div>
-          <div id="author" style={authorStyle}>
-            - { this.props.author }
+          <div className="row">
+            <div className="col-md-6" style={{margin: 'auto'}}>
+              <div className="text-center">
+                <FontAwesomeIcon icon={faQuoteLeft} size="2x" />&nbsp;
+                { this.props.content }
+                &nbsp;<FontAwesomeIcon icon={faQuoteRight} size="2x" />
+              </div>
+              <div id="author" className="text-right" style={authorStyle}>
+                - { this.props.author }
+              </div>
+            </div>
           </div>
         </Card.Body>
       </Card>

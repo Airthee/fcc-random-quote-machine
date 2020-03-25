@@ -72,25 +72,23 @@ class App extends React.Component {
     // Generate data for sharing
     const shareData = `"${this.state.quote.content}" - ${this.state.quote.author}`;
 
-    const quoteBoxStyle = {
-      margin: 'auto'
-    };
-    
     return (
-      <div id="quote-box" className="container-fluid col-md-5" style={quoteBoxStyle}>
-        <AppHeader />
+      <div className="container bg-light" style={{ minHeight: '100vh' }}>
+        <div id="quote-box">
+          <AppHeader />
 
-        <Quote
-          content={ this.state.quote.content }
-          author={this.state.quote.author} />
+          <Quote
+            content={ this.state.quote.content }
+            author={this.state.quote.author} />
 
-        <div className="row">
-          <div className="col-md-6">
-            <RandomQuoteButton className="btn-block" onClick={this.pickRandomQuote} />
-          </div>
+          <div className="row">
+            <div className="col-md-6">
+              <RandomQuoteButton className="btn-block" onClick={this.pickRandomQuote} />
+            </div>
 
-          <div className="col-md-6">
-            <TweeterShareButton className="btn-block" data={shareData} />
+            <div className="col-md-6">
+              <TweeterShareButton className="btn-block" data={shareData} />
+            </div>
           </div>
         </div>
       </div>

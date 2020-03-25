@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faRetweet } from '@fortawesome/free-solid-svg-icons'
 
 // React component
 class TweeterShareButton extends React.Component {
@@ -25,7 +27,7 @@ class TweeterShareButton extends React.Component {
         target="_blank"
         rel="noreferrer noopener"
       >
-        Tweet quote
+        <FontAwesomeIcon icon={faRetweet} /> Tweet quote
       </a>
     );
   }

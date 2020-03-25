@@ -1,16 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faRandom } from '@fortawesome/free-solid-svg-icons'
 
 // React component
 class RandomQuoteButton extends React.Component {
-  // constructor(props) {
-  //   super(props);
-  // }
-
   render() {
     return(
       <div id="new-quote" onClick={this.props.onClick} className={'btn btn-primary '.concat(this.props.className)}>
-        <i className="fas fa-plus"></i> New quote
+        <FontAwesomeIcon icon={faRandom} /> New quote
       </div>
     );
   }
