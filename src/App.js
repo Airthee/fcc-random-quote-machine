@@ -1,8 +1,10 @@
 import React from 'react';
 import axios from 'axios';
-import ReactHtmlParser from 'react-html-parser';
 import './App.css';
 import Quote from './components/Quote';
+import TweeterShareButton from './components/TweeterShareButton';
+import RandomQuoteButton from './components/RandomQuoteButton';
+import AppHeader from './components/AppHeader';
 
 class App extends React.Component {
   constructor(props) {
@@ -44,9 +46,15 @@ class App extends React.Component {
         }
       })
       .then((response)=>{
+        const stripHtml = (str) => {
+          const temp = document.createElement('DIV');
+          temp.innerHTML = str;
+          return temp.textContent || temp.innerText;
+        };
+
         const quotes = response.data.map(quote => ({
-          author: quote.title.rendered,
-          content: quote.content.rendered
+          author: stripHtml(quote.title.rendered),
+          content: stripHtml(quote.content.rendered)
         }));
   
         this.setState({
@@ -61,18 +69,30 @@ class App extends React.Component {
   }
 
   render() {
+    // Generate data for sharing
+    const shareData = `"${this.state.quote.content}" - ${this.state.quote.author}`;
+
+    const quoteBoxStyle = {
+      margin: 'auto'
+    };
+    
     return (
-      <div id="quote-box" className="container-fluid">
+      <div id="quote-box" className="container-fluid col-md-5" style={quoteBoxStyle}>
+        <AppHeader />
+
         <Quote
-          content={ ReactHtmlParser(this.state.quote.content) }
+          content={ this.state.quote.content }
           author={this.state.quote.author} />
 
-        <div id="new-quote" onClick={this.pickRandomQuote} className="btn btn-primary">
-          <i className="fas fa-plus"></i> New quote
+        <div className="row">
+          <div className="col-md-6">
+            <RandomQuoteButton className="btn-block" onClick={this.pickRandomQuote} />
+          </div>
+
+          <div className="col-md-6">
+            <TweeterShareButton className="btn-block" data={shareData} />
+          </div>
         </div>
-        <a href="https://tweeter.com" id="tweet-quote">
-          Tweet quote
-        </a>
       </div>
     );
   }
