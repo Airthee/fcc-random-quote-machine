@@ -16,7 +16,7 @@ class Quote extends React.Component {
         <Card.Body>
           <div className="row">
             <div className="col-md-6" style={{margin: 'auto'}}>
-              <div className="text-center">
+              <div id="text" className="text-center">
                 <FontAwesomeIcon icon={faQuoteLeft} size="2x" />&nbsp;
                 { this.props.content }
                 &nbsp;<FontAwesomeIcon icon={faQuoteRight} size="2x" />
